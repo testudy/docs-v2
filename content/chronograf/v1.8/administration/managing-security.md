@@ -37,7 +37,7 @@ Chronograf will use this secret to generate the JWT Signature for all access tok
 1. Generate a secret, high-entropy pseudo-random string.
 
     > For example, to do this with OpenSSL, run this command:
-    > ```
+    > ```sh
     > openssl rand -base64 256 | tr -d '\n'
     > ```
 
@@ -449,31 +449,18 @@ Chronograf can be configured to authenticate users using a username and password
 {{% warn %}}
 OAuth is the prefered method for authentication.
 Only use basic authentication in cases where an OAuth integration is not possible.
+
+#### Basic auth and super users
+When using basic authentication, Chronograf authorization rules are not enforced.
+With basic authentication enable, all users have SuperAdmin status.
+For more information, see [Cross-organization SuperAdmin status](/chronograf/v1.8/administration/managing-chronograf-users/#cross-organization-superadmin-status).
 {{% /warn %}}
 
-When using basic authentication, Chronograf authorization rules are not enforced.
-Basic authentication controls who can access Chronograf, and all users have SuperAdmin status.
-For more information, see [Cross-organization SuperAdmin status](/chronograf/v1.8/administration/managing-chronograf-users/#cross-organization-superadmin-status).
-
 Turn on HTTP basic access authentication to restrict HTTP requests to Chronograf to selected users.
-Use chronograf CLI with —htpasswd <path to .htpasswd file> or HTPASSWD environment variable.
-
+Use chronograf CLI with `—htpasswd <path to .htpasswd file>` or `HTPASSWD` environment variable.
 The .htpasswd file contains users and their passwords.
 For more information about managing the htpasswd utility, see NGINX documentation.
 
-On this page https://docs.influxdata.com/chronograf/v1.8/tools/chronograf-cli/, perhaps under General authorization flags?:
- —htpasswd <path to .htpasswd file> or HTPASSWD environment variable
-
-
-This PR allows to turn on HTTP basic access authentication so that all HTTP requests to chronograf are restricted to selected users.
-This is possible on CLI with --htpasswd <path to .htpasswd file> or with HTPASSWD environment variable.
-
-The .htpasswd file contains users and their passwords, it is usually managed by the htpasswd utility,
-see https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/ to know more.
-This type of authentication should be used in cases, in which OAuth integration is not possible.
-
-Warning: When using basic authentication, the authorization rules of Chronograf are not enforced.
-Basic access authentication only controls who can access Chronograf, users are then super users.
 ## Configure TLS (Transport Layer Security) and HTTPS
 
 The TLS (Transport Layer Security) cryptographic protocol is supported in Chronograf to provides server authentication, data confidentiality, and data integrity.
