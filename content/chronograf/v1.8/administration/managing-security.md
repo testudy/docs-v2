@@ -11,7 +11,7 @@ menu:
 
 To enhance security, configure Chronograf to authenticate and authorize with [OAuth 2.0](https://oauth.net/) and use TLS/HTTPS.
 
-* [Configure OAuth 2.0](#configure-chronograf-to-authenticate-with-oauth-2-0)
+* [Configure Chronograf to authenticate with OAuth 2.0](#configure-chronograf-to-authenticate-with-oauth-20)
   1. [Generate a Token Secret](#generate-a-token-secret)
   2. [Set configurations for your OAuth provider](#set-configurations-for-your-oauth-provider)
   3. [Configure authentication duration](#configure-authentication-duration)
@@ -34,12 +34,12 @@ To configure any of the supported OAuth 2.0 providers to work with Chronograf,
 you must configure the `TOKEN_SECRET` environment variable (or command line option).
 Chronograf will use this secret to generate the JWT Signature for all access tokens.
 
-1. Generate a secret, high-entropy pseudo-random string.
+1. Generate a high-entropy pseudo-random string.
 
-    > For example, to do this with OpenSSL, run this command:
-    > ```sh
-    > openssl rand -base64 256 | tr -d '\n'
-    > ```
+   For example, to do this with OpenSSL, run this command:
+   ```sh
+   openssl rand -base64 256 | tr -d '\n'
+   ```
 
 2. Set the environment variable:
 
@@ -47,8 +47,10 @@ Chronograf will use this secret to generate the JWT Signature for all access tok
     TOKEN_SECRET=<mysecret>
     ```
 
-> ***InfluxEnterprise clusters:*** If you are running multiple Chronograf servers in a high availability configuration,
-> set the `TOKEN_SECRET` environment variable on each server to ensure that users can stay logged in.
+{{% note %}}
+***InfluxEnterprise clusters:*** If you are running multiple Chronograf servers in a high availability configuration,
+set the `TOKEN_SECRET` environment variable on each server to ensure that users can stay logged in.
+{{% /note %}}
 
 ### JWKS Signature Verification (optional)
 
@@ -77,7 +79,7 @@ Configuration steps for the following supported authentication providers are pro
 * [Okta](#configure-okta-authentication)
 * [Gitlab](#configure-gitlab-authentication)
 * [Azure Active Directory](#configure-azure-active-directory-authentication)
-* [Configure Chronograf to use any OAuth 2.0 provider](#configure-chronograf-to-use-any-oauth-2-0-provider)
+* [Configure Chronograf to use any OAuth 2.0 provider](#configure-chronograf-to-use-any-oauth-20-provider)
 
 > If you haven't already, you must first [generate a token secret](#generate-a-token-secret) before proceeding.
 
@@ -418,7 +420,9 @@ JWKS_URL="https://example.com/adfs/discovery/keys"
 TOKEN_SECRET="ZNh2N9toMwUVQxTVEe2ZnnMtgkh3xqKZ"
 ```
 
-> _**Note:**_ Do not use special characters for the GENERIC_CLIENT_ID as AD FS will split strings here, finally resulting in an identifier mismatch.
+{{% note %}}
+Do not use special characters for the `GENERIC_CLIENT_ID` as AD FS will split strings here, finally resulting in an identifier mismatch.
+{{% /note %}}
 
 ### Configure authentication duration
 
@@ -447,7 +451,7 @@ This makes the cookie transient (aka "in-memory").
 Chronograf can be configured to authenticate users using a username and password ("basic authentication").
 
 {{% warn %}}
-[OAuth 2.0](#configure-chronograf-to-authenticate-with-oauth-2-0) is the prefered method for authentication.
+[OAuth 2.0](#configure-chronograf-to-authenticate-with-oauth-20) is the prefered method for authentication.
 Only use basic authentication in cases where an OAuth 2.0 integration is not possible.
 {{% /warn %}}
 
@@ -472,7 +476,9 @@ Chronograf includes command line and environment variable options for configurin
 Use of the TLS cryptographic protocol provides server authentication, data confidentiality, and data integrity.
 When configured, users can use HTTPS to securely communicate with your Chronograf applications.
 
-> ***Note:*** Using HTTPS helps guard against nefarious agents sniffing the JWT and using it to spoof a valid user against the Chronograf server.
+{{% note %}}
+Using HTTPS helps guard against nefarious agents sniffing the JWT and using it to spoof a valid user against the Chronograf server.
+{{% /note %}}
 
 ### Configuring TLS for Chronograf
 
@@ -487,7 +493,9 @@ All Chronograf command line options have corresponding environment variables.
 1. Specify the certificate file using the `TLS_CERTIFICATE` environment variable (or the `--cert` CLI option).
 2. Specify the key file using the `TLS_PRIVATE_KEY` environment variable (or `--key` CLI option).
 
-> ***Note:*** If both the TLS certificate and key are in the same file, specify them using the `TLS_CERTIFICATE` environment variable (or the `--cert` CLI option).
+{{% note %}}
+If both the TLS certificate and key are in the same file, specify them using the `TLS_CERTIFICATE` environment variable (or the `--cert` CLI option).
+{{% /note %}}
 
 #### Example with CLI options
 ```sh
