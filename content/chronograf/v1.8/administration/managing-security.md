@@ -447,8 +447,8 @@ This makes the cookie transient (aka "in-memory").
 Chronograf can be configured to authenticate users using a username and password ("basic authentication").
 
 {{% warn %}}
-OAuth is the prefered method for authentication.
-Only use basic authentication in cases where an OAuth integration is not possible.
+[OAuth 2.0](#configure-chronograf-to-authenticate-with-oauth-2-0) is the prefered method for authentication.
+Only use basic authentication in cases where an OAuth 2.0 integration is not possible.
 {{% /warn %}}
 
 When using basic authentication, *all users have SuperAdmin status*.
