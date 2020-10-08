@@ -10,6 +10,7 @@ menu:
 ---
 
 To enhance security, configure Chronograf to authenticate and authorize with [OAuth 2.0](https://oauth.net/) and use TLS/HTTPS.
+(Basic authentication is also available.)
 
 * [Configure Chronograf to authenticate with OAuth 2.0](#configure-chronograf-to-authenticate-with-oauth-20)
   1. [Generate a Token Secret](#generate-a-token-secret)
@@ -448,7 +449,7 @@ This makes the cookie transient (aka "in-memory").
 
 ## Configure Chronograf to authenticate with a username and password
 
-Chronograf can be configured to authenticate users using a username and password ("basic authentication").
+Chronograf can be configured to authenticate users by username and password ("basic authentication").
 
 {{% warn %}}
 [OAuth 2.0](#configure-chronograf-to-authenticate-with-oauth-20) is the prefered method for authentication.
