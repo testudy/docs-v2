@@ -449,17 +449,16 @@ Chronograf can be configured to authenticate users using a username and password
 {{% warn %}}
 OAuth is the prefered method for authentication.
 Only use basic authentication in cases where an OAuth integration is not possible.
-
-#### Basic auth and super users
-When using basic authentication, Chronograf authorization rules are not enforced.
-With basic authentication enable, all users have SuperAdmin status.
-For more information, see [Cross-organization SuperAdmin status](/chronograf/v1.8/administration/managing-chronograf-users/#cross-organization-superadmin-status).
 {{% /warn %}}
 
-Turn on HTTP basic access authentication to restrict HTTP requests to Chronograf to selected users.
-Use chronograf CLI with `—htpasswd <path to .htpasswd file>` or `HTPASSWD` environment variable.
-The .htpasswd file contains users and their passwords.
-For more information about managing the htpasswd utility, see NGINX documentation.
+When using basic authentication, *all users have SuperAdmin status*.
+With basic authentication enabled, Chronograf authorization rules are not enforced.
+For more information, see [Cross-organization SuperAdmin status](/chronograf/v1.8/administration/managing-chronograf-users/#cross-organization-superadmin-status).
+
+Turn on HTTP basic authentication access to restrict HTTP requests to Chronograf to selected users.
+Use the Chronograf CLI with `—htpasswd <path to .htpasswd file>` or `HTPASSWD` environment variable.
+The `.htpasswd` file contains users and their passwords.
+For more information about managing the htpasswd utility, see [NGINX documentation](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/).
 
 ## Configure TLS (Transport Layer Security) and HTTPS
 
