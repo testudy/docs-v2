@@ -10,7 +10,7 @@ menu:
 ---
 
 To enhance security, configure Chronograf to authenticate and authorize with [OAuth 2.0](https://oauth.net/) and use TLS/HTTPS.
-(Basic authentication is also available.)
+(Basic authentication with username and password is also available.)
 
 * [Configure Chronograf to authenticate with OAuth 2.0](#configure-chronograf-to-authenticate-with-oauth-20)
   1. [Generate a Token Secret](#generate-a-token-secret)
@@ -36,7 +36,7 @@ you must configure the `TOKEN_SECRET` environment variable (or command line opti
 Chronograf will use this secret to generate the JWT Signature for all access tokens.
 
 1. Generate a high-entropy pseudo-random string.
-
+   
    For example, to do this with OpenSSL, run this command:
    ```sh
    openssl rand -base64 256 | tr -d '\n'
@@ -452,7 +452,7 @@ This makes the cookie transient (aka "in-memory").
 Chronograf can be configured to authenticate users by username and password ("basic authentication").
 
 {{% warn %}}
-[OAuth 2.0](#configure-chronograf-to-authenticate-with-oauth-20) is the prefered method for authentication.
+[OAuth 2.0](#configure-chronograf-to-authenticate-with-oauth-20) is the preferred method for authentication.
 Only use basic authentication in cases where an OAuth 2.0 integration is not possible.
 {{% /warn %}}
 
